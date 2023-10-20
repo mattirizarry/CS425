@@ -80,4 +80,10 @@ matthew.irizarry745@topper.wku.edu
 
     #### Second Setting
 
-    The m
+    The median time elapsed during the second setting is `0.6033244`, and I have recorded all five runs in `3.2.output.txt`
+
+    #### Why are the times different, and why?
+
+    This may seem like a complicated answer, but it really is quite simple. In the first example, `producer()` and `consumer()` context switch with much higher frequency than in the second example. We can confirm this by using the `perf` command, and we see that the first setting has `1,982,818` context switches.
+
+    The second setting only has `6,733` context switches. This is a MASSIVE difference and allows the computation to be performed significantly quicker than the first setting. 
