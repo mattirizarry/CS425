@@ -1,7 +1,3 @@
-// This program is just the first iteration to get this problem working
-// before adding new features like multiple producers or consumers, or
-// a variable buffer size. 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
