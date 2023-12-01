@@ -47,3 +47,11 @@ You need to apply the following principles and concepts to analyze the producers
 
 ## Experimental Results
 
+## References
+
+1. https://www.mathcs.duq.edu/simon/Primer/essential/threads/synchronization.html
+2. https://cs.brown.edu/courses/cs033/lecture/34Threads3.pdf
+3. https://w3.cs.jmu.edu/kirkpams/OpenCSF/Books/csf/html/ProdCons.html
+4. https://www.tutorialspoint.com/producer-consumer-problem-in-c
+5. https://code-vault.net/lesson/tlu0jq32v9:1609364042686
+ https://medium.com/@sohamshah456/producer-consumer-programming-with-c-d0d47b8f103f
