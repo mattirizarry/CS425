@@ -1,6 +1,6 @@
 # CS 425 Project 2
 
-This project will look at solving the producers - consumer problem with `pthread`.
+This project will look at solving the producers - consumer problem with `pthread` library.
 
 ## 1. Description of the problem
 
@@ -43,7 +43,13 @@ You need to apply the following principles and concepts to analyze the producers
 
 #### 1. How many critical sections should the producer function have, why?
 
+The `producer()` has two critical sections. The first critical section is the `while` loop that checks if the buffer is full. If it is not, then the `producer()` will wait. The second critical section is where the `producer()` actually increments the value. This is to ensure that the `producer()` does not increment the value if the buffer is full. Then, it keeps track of how many values have been produced. Once the `producer()` has produced all the values, it will signal to the `consumer()` That it is ready for it to start consuming values from the buffer.  
+
 #### 2. How many critical sections should the consumer function have, why?
+
+The consumer also has two critical functions, but the check is a bit different than the producer. The first critical section checks if the number of `produced` is equal to the number of `consumed`. This tells the consumer that the `producer()` is still producing values and to wait until the `producer()` is full to start consuming values.
+
+Once the `producer()` is full, the consumer will start consuming values from the buffer. Once all this is done, it will increment the consumed value, and signal to the `producer()` that it is ready to start producing values again.
 
 ## Experimental Results
 
@@ -94,6 +100,22 @@ You need to apply the following principles and concepts to analyze the producers
 | 40 | 9.03 |
 | 50 | 9.24 |
 | 100 | 8.99 |
+
+## Experimental Analysis
+
+#### 1. Compare the performance of the two implementations, which one is better? Why?
+
+The `mutex` implementation is better than the `spinlock` implementation. This is because the `spinlock` implementation has to wait for the lock to be released, while the `mutex` implementation does not. This is because the `mutex` implementation uses a blocking wait, while the `spinlock` implementation uses a busy wait. This means that the `spinlock` implementation will have to wait for the lock to be released, while the `mutex` implementation will not. This is why the `mutex` implementation is better than the `spinlock` implementation.
+
+#### 2. Compare the performance of the two implementations in different settings, which one is better? Why?
+
+We know from above that the `mutex` is categorically faster because of the differences in busy wait vs blocked wait. However, we can see that in both instances, adding more consumers increases the time nearly two fold for both situations. This is because the consumers have to wait for the producers to produce the values before they can consume them. This is why the time increases nearly two fold when we add more consumers.
+
+## Conclusion
+
+`mutex` and `spinlock` both have advantages with regards to the problems they solve. In this case, `mutex` simply outperforms `spinlock`. One disadvantage to a busy wait is that the thread is completely stopped while waiting for the block to be released. This can be a problem if the thread is waiting for an extended period of time.
+
+A disadvantage of a busy wait is that the thread is constantly checking to see if the lock has been released. This can be a problem if the thread is checking for an extended period of time, or if there is a lot of contention for the lock.
 
 ## References
 
