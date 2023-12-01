@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <time.h>
 
 int* buffer;
 int in = 0;
@@ -88,6 +89,9 @@ int main(int argc, char *argv[]) {
 
     pthread_t producer_threads[NUM_OF_PRODUCERS], consumer_threads[NUM_OF_CONSUMERS];
 
+    // Track the start and stop time
+    clock_t begin = clock();
+
     for (int i = 0; i < NUM_OF_PRODUCERS; i++) {
         int* thread_num = malloc(sizeof(int));
 
@@ -115,6 +119,12 @@ int main(int argc, char *argv[]) {
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&full);
     pthread_cond_destroy(&empty);
+
+    clock_t end = clock();
+
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+    printf("Time spent: %f\n", time_spent);
 
     return 0;
 }

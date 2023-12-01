@@ -88,6 +88,8 @@ int main(int argc, char* argv[]) {
 
     pthread_t producer_threads[NUM_OF_PRODUCERS], consumer_threads[NUM_OF_CONSUMERS];
 
+    clock_t begin = clock();
+
     for (int i = 0; i < NUM_OF_PRODUCERS; i++) {
         int* thread_num = malloc(sizeof(int));
 
@@ -117,6 +119,12 @@ int main(int argc, char* argv[]) {
     pthread_cond_destroy(&empty);
 
     free(buffer);
+
+    clock_t end = clock();
+
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+    printf("Time spent: %f\n", time_spent);
 
     return 0;
 }

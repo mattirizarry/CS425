@@ -47,6 +47,54 @@ You need to apply the following principles and concepts to analyze the producers
 
 ## Experimental Results
 
+### Mutex.c
+
+#### Upper Limit of 1 Million, 1 Producer, 1 Consumer
+
+| Buffer Size | Time Elapsed (s) |
+|-----|-----|
+| 10 | 3.91 |
+| 20 | 3.92 |
+| 30 | 3.85 |
+| 40 | 3.92 |
+| 50 | 3.92 |
+| 100 | 3.88 |
+
+#### Upper Limit of 1 Million, 1 Producer, 5 Consumers
+
+| Buffer Size | Time Elapsed (s) |
+|-----|-----|
+| 10 | 7.68 |
+| 20 | 7.53 |
+| 30 | 7.43 |
+| 40 | 7.50 |
+| 50 | 7.41 |
+| 100 | 7.44 |
+
+### Spinlock.c
+ 
+#### Upper Limit of 1 Million, 1 Producer, 1 Consumer
+
+| Buffer Size | Time Elapsed (s) |
+|-----|-----|
+| 10 | 5.41 |
+| 20 | 5.54 |
+| 30 | 5.52 |
+| 40 | 5.64 |
+| 50 | 5.59 |
+| 100 | 5.58 |
+
+#### Upper Limit of 1 Million, 1 Producer, 5 Consumers
+
+| Buffer Size | Time Elapsed (s) |
+|-----|-----|
+| 10 | 9.13 |
+| 20 | 9.10 |
+| 30 | 8.85 |
+| 40 | 9.03 |
+| 50 | 9.24 |
+| 100 | 8.99 |
+
 ## References
 
 1. https://www.mathcs.duq.edu/simon/Primer/essential/threads/synchronization.html
@@ -54,4 +102,4 @@ You need to apply the following principles and concepts to analyze the producers
 3. https://w3.cs.jmu.edu/kirkpams/OpenCSF/Books/csf/html/ProdCons.html
 4. https://www.tutorialspoint.com/producer-consumer-problem-in-c
 5. https://code-vault.net/lesson/tlu0jq32v9:1609364042686
- https://medium.com/@sohamshah456/producer-consumer-programming-with-c-d0d47b8f103f
+6. https://medium.com/@sohamshah456/producer-consumer-programming-with-c-d0d47b8f103f
